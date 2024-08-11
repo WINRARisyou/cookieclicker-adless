@@ -132,43 +132,43 @@
 			"platform": "wide"
 		},
 		{
-			"src": "img/ss8.png",
-			"sizes": "1345x768",
+			"src": "img/ss8-1.png",
+			"sizes": "1920x1080",
 			"type": "image/png",
 			"platform": "wide",
 			"form_factor": "wide"
 		},
 		{
-			"src": "img/ss9.png",
-			"sizes": "1366x768",
+			"src": "img/ss9-1.png",
+			"sizes": "1920x1080",
 			"type": "image/png",
 			"platform": "wide",
 			"form_factor": "wide"
 		},
 		{
-			"src": "img/ss10.png",
-			"sizes": "1920x936",
+			"src": "img/ss10-1.png",
+			"sizes": "1920x1080",
 			"type": "image/png",
 			"platform": "wide",
 			"form_factor": "wide"
 		},
 		{
-			"src": "img/ss11.png",
-			"sizes": "1920x974",
+			"src": "img/ss11-1.png",
+			"sizes": "1920x1080",
 			"type": "image/png",
 			"platform": "wide",
 			"form_factor": "wide"
 		},
 		{
-			"src": "img/ss12.png",
-			"sizes": "1366x667",
+			"src": "img/ss12-1.png",
+			"sizes": "1920x1080",
 			"type": "image/png",
 			"platform": "wide",
 			"form_factor": "wide"
 		},
 		{
-			"src": "img/ss13.png",
-			"sizes": "1920x930",
+			"src": "img/ss13-1.png",
+			"sizes": "1920x1080",
 			"type": "image/png",
 			"platform": "wide",
 			"form_factor": "wide"

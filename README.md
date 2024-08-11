@@ -55,35 +55,38 @@ If you happen to update, please make a pull request for others to benefit, thank
 
 # Mod Loading
 
-# I AM NOT LIABLE IF YOU RUN A MALICIOUS MOD. IT IS UP TO YOU TO ENSURE YOU DOWNLOAD AND RUN SAFE FILES
+### *I AM NOT LIABLE IF YOU RUN A MALICIOUS MOD. IT IS UP TO YOU TO ENSURE YOU DOWNLOAD AND RUN SAFE FILES*
 
-**If you have installed this as an app, you can very quickly and easily install mods.**
+### **If you have installed this Cookie Clicker instance as an app, you can very quickly and easily install mods.**
+#### *Note, sometimes there will be mod incompatibilites, whether it be with another mod, or the cookie clicker version. I'm not providing downgrades for this, so if the mod doesn't work on the latest version, tough luck.*
 ### Method 1
 
 If you have the .JS file, you can simple right-click, open with Cookie Clicker, and then it should load automagically.
 
-Warning; When doing this on Windows, you will get a prompt asking you if you're sure you want to open the file. This is ok, as Windows has a long forgotten feature to run JS, and it's there to stop you from running anything malicious, so double check the mod is clean.
+Warning; When doing this on Windows, you may get a prompt asking you if you're sure you want to open the file. This is ok, as it's there to stop you from running anything malicious, so double check the mod is clean before running it.
 
 ### Method 2
 Another method would be through creating a mod pack. It's just a JSON file with a special extension.
 
 ### Example
 ```json
-//Save this as ModPack.cookiejar
+//Save this as ModPack.cookiejar or ModPack.json
 
 {
 	"Cookie Jar Version": 1.0,
 	"Mods": [
 		{
 			"Name": "Cookie Monster",
-			"Url": "https://cookiemonsterteam.github.io/CookieMonster/dist/CookieMonster.js"
+			"URL": "https://cookiemonsterteam.github.io/CookieMonster/dist/CookieMonster.js"
 		},
 		{
 			"Name": "Frozen Cookies",
-			"Url": "https://mtarnuhal.github.io/FrozenCookies/frozen_cookies.js"
+			"URL": "https://mtarnuhal.github.io/FrozenCookies/frozen_cookies.js"
 		},
 		//So on and so forth
 	]
 }
 ```
-To load it, simply rename the file extension from ".json" to ".cookiejar" and then do the same steps as for method 1 (You may need to enable file extensions on [Windows](https://support.microsoft.com/en-us/windows/common-file-name-extensions-in-windows-da4a4430-8e76-89c5-59f7-1cdbbc75cb01)).
+To load it, simply rename the file extension from ".json" to ".cookiejar" (or don't, it still works) and then do the same steps as for method 1 (You may need to enable file extensions on [Windows](https://support.microsoft.com/en-us/windows/common-file-name-extensions-in-windows-da4a4430-8e76-89c5-59f7-1cdbbc75cb01#:~:text=In%20File%20Explorer%20under%20View%2C%20in%20the%20Show/hide%20group%2C%20select%20the%20File%20name%20extensions%20check%20box.)).
+
+

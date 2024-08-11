@@ -15741,6 +15741,7 @@ window.onload = function () {
 									'About to cheat in some cookies or just checking for bugs?',
 									'Remember : cheated cookies taste awful!',
 									'Hey, Orteil here. Cheated cookies taste awful... or do they?',
+									'WINRAR was here.'
 								]) + ' ===]');
 								Game.Load(function () { Game.Init(); if (firstLaunch) Game.showLangSelection(true); });
 								//try {Game.Load(Game.Init);}

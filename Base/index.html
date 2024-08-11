@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html>
+<!-- WINRAR was here. -->
 
 <head>
 	<!-- external -->
@@ -7,10 +8,12 @@
 		window.cookieconsent_options = { "message": "<br>Unsurprisingly, this website uses cookies for ads and traffic analysis.<br>", "dismiss": "Got it!", "learnMore": "Learn more", "link": "//orteil.dashnet.org/cookieconsentpolicy.html", "target": "_blank", "theme": "cookieconsent.css", "domain": "dashnet.org" };
 	</script>
 
-	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.9/cookieconsent.min.js"></script>
+	<script type="text/javascript"
+		src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.9/cookieconsent.min.js"></script>
 
 	<!--<link href="https://fonts.googleapis.com/css?family=Kavoon&subset=latin,latin-ext" rel="stylesheet" type="text/css">-->
-	<link href='https://fonts.googleapis.com/css?family=Merriweather:900&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Merriweather:900&subset=latin,latin-ext' rel='stylesheet'
+		type='text/css'>
 
 	<!-- Facebook Pixel Code -->
 	<script>
@@ -59,12 +62,19 @@
 	<![endif]-->
 
 	<!--[if lt IE9]><script src="excanvas.compiled.js"></script><![endif]-->
+
+	<!-- Service Worker -->
 	<script>
+		function fallbackSWReg() {
+			if (typeof navigator.serviceWorker !== 'undefined') {
+				navigator.serviceWorker.register('sw.js')
+			}
+		}
 		const registerServiceWorker = async () => {
 			if ("serviceWorker" in navigator) {
 				try {
-					const registration = await navigator.serviceWorker.register("service-worker.js", {
-						scope: "/",
+					const registration = await navigator.serviceWorker.register("sw.js", {
+						scope: "./",
 					});
 					if (registration.installing) {
 						console.log("Service worker installing");
@@ -74,12 +84,14 @@
 						console.log("Service worker active");
 					}
 				} catch (error) {
-					console.error(`Registration failed with ${error}`);
+					console.error(`Registration failed with ${error}, attempting fallback registration`);
+					fallbackSWReg();
 				}
 			}
 		};
 		registerServiceWorker();
 	</script>
+	<!-- /Service Worker-->
 </head>
 
 <body>

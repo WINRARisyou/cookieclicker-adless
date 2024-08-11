@@ -3,11 +3,11 @@
 	"Mods": [
 		{
 			"Name": "Cookie Monster",
-			"Url": "https://cookiemonsterteam.github.io/CookieMonster/dist/CookieMonster.js"
+			"URL": "https://cookiemonsterteam.github.io/CookieMonster/dist/CookieMonster.js"
 		},
 		{
 			"Name": "Frozen Cookies",
-			"Url": "https://mtarnuhal.github.io/FrozenCookies/frozen_cookies.js"
+			"URL": "https://mtarnuhal.github.io/FrozenCookies/frozen_cookies.js"
 		}
 	]
 }
