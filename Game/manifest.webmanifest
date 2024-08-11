@@ -1,8 +1,55 @@
 {
 	"short_name": "Cookie Clicker",
 	"name": "Cookie Clicker",
+	"dir": "ltr",
+	"orientation": "landscape",
+	"scope": "/",
+	"lang": "en",
 	"description": "Cookie Clicker is a game about making an absurd amount of cookies. To help you in this endeavor, you will recruit a wide variety of helpful cookie makers, like friendly Grandmas, Farms, Factories, and otherworldly Portals.",
 	"id": "org.dashnet.cookieclicker",
+	"start_url": "index.html?steamMode=true",
+	"theme_color": "#2386cf",
+	"background_color": "#2780c2",
+	"display": "standalone",
+	"display_override": [
+		"window-controls-overlay",
+		"minimal_ui"
+	],
+	"handle_links": "preferred",
+	"shortcuts": [
+		{
+			"name": "Top Bar Enabled",
+			"url": "index.html",
+			"description": "Loads Cookie Clicker with the Top Bar enabled.",
+			"icons": [
+				{
+					"src": "img/favicon-16.ico",
+					"type": "image/vnd.microsoft.icon",
+					"sizes": "16x16"
+				},
+				{
+					"src": "img/16.png",
+					"type": "image/png",
+					"sizes": "16x16"
+				},
+				{
+					"src": "img/32.png",
+					"type": "image/png",
+					"sizes": "32x32"
+				},
+				{
+					"src": "img/64.png",
+					"type": "image/png",
+					"sizes": "64x64"
+				},
+				{
+					"src": "img/128.png",
+					"type": "image/png",
+					"sizes": "128x128"
+				}
+			]
+		}
+	],
 	"icons": [
 		{
 			"src": "img/favicon-16.ico",
@@ -38,17 +85,6 @@
 			"src": "img/perfectCookie.png",
 			"type": "image/png",
 			"sizes": "512x512"
-		}
-	],
-	"start_url": "index.html?steamMode=true",
-	"background_color": "#2780c2",
-	"display": "standalone",
-	"theme_color": "#2386cf",
-	"shortcuts": [
-		{
-			"name": "No Full Screen",
-			"url": "index.html",
-			"description": "Loads Cookie Clicker with the Top Bar enabled."
 		}
 	],
 	"screenshots": [
@@ -94,6 +130,48 @@
 			"sizes": "600x337",
 			"type": "image/jpg",
 			"platform": "wide"
+		},
+		{
+			"src": "img/ss8.png",
+			"sizes": "1345x768",
+			"type": "image/png",
+			"platform": "wide",
+			"form_factor": "wide"
+		},
+		{
+			"src": "img/ss9.png",
+			"sizes": "1366x768",
+			"type": "image/png",
+			"platform": "wide",
+			"form_factor": "wide"
+		},
+		{
+			"src": "img/ss10.png",
+			"sizes": "1920x936",
+			"type": "image/png",
+			"platform": "wide",
+			"form_factor": "wide"
+		},
+		{
+			"src": "img/ss11.png",
+			"sizes": "1920x974",
+			"type": "image/png",
+			"platform": "wide",
+			"form_factor": "wide"
+		},
+		{
+			"src": "img/ss12.png",
+			"sizes": "1366x667",
+			"type": "image/png",
+			"platform": "wide",
+			"form_factor": "wide"
+		},
+		{
+			"src": "img/ss13.png",
+			"sizes": "1920x930",
+			"type": "image/png",
+			"platform": "wide",
+			"form_factor": "wide"
 		}
 	],
 	"launch_handler": {
@@ -102,15 +180,6 @@
 			"auto"
 		]
 	},
-	"handle_links": "preferred",
-	"dir": "ltr",
-	"scope": "/",
-	"lang": "en",
-	"orientation": "landscape",
-	"display_override": [
-		"window-controls-overlay",
-		"minimal_ui"
-	],
 	"file_handlers": [
 		{
 			"action": "index.html?steamMode=true",
@@ -122,7 +191,7 @@
 			"icons": [
 				{
 					"src": "img/mods-icon.png",
-					"sizes": "1024x1024",
+					"sizes": "1024x1024, 512x512, 256x256, 128x128, 64x64, 32x32",
 					"type": "image/png"
 				}
 			],
@@ -132,13 +201,14 @@
 			"action": "index.html?steamMode=true&ModPack=true",
 			"accept": {
 				"application/json": [
-					".cookiejar"
+					".cookiejar",
+					".json"
 				]
 			},
 			"icons": [
 				{
 					"src": "img/mods-icon.png",
-					"sizes": "1024x1024",
+					"sizes": "1024x1024, 512x512, 256x256, 128x128, 64x64, 32x32",
 					"type": "image/png"
 				}
 			],
