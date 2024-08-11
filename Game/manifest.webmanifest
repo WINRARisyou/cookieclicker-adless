@@ -122,7 +122,7 @@
 			"icons": [
 				{
 					"src": "img/mods-icon.png",
-					"sizes": "128x128",
+					"sizes": "1024x1024",
 					"type": "image/png"
 				}
 			],
@@ -138,7 +138,7 @@
 			"icons": [
 				{
 					"src": "img/mods-icon.png",
-					"sizes": "128x128",
+					"sizes": "1024x1024",
 					"type": "image/png"
 				}
 			],
