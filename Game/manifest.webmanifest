@@ -1,0 +1,170 @@
+{
+	"short_name": "Cookie Clicker",
+	"name": "Cookie Clicker",
+	"description": "Cookie Clicker is a game about making an absurd amount of cookies. To help you in this endeavor, you will recruit a wide variety of helpful cookie makers, like friendly Grandmas, Farms, Factories, and otherworldly Portals.",
+	"id": "org.dashnet.cookieclicker",
+	"icons": [
+		{
+			"src": "img/favicon-16.ico",
+			"type": "image/vnd.microsoft.icon",
+			"sizes": "16x16"
+		},
+		{
+			"src": "img/16.png",
+			"type": "image/png",
+			"sizes": "16x16"
+		},
+		{
+			"src": "img/32.png",
+			"type": "image/png",
+			"sizes": "32x32"
+		},
+		{
+			"src": "img/64.png",
+			"type": "image/png",
+			"sizes": "64x64"
+		},
+		{
+			"src": "img/128.png",
+			"type": "image/png",
+			"sizes": "128x128"
+		},
+		{
+			"src": "img/256.png",
+			"type": "image/png",
+			"sizes": "256x256"
+		},
+		{
+			"src": "img/perfectCookie.png",
+			"type": "image/png",
+			"sizes": "512x512"
+		}
+	],
+	"start_url": "index.html?steamMode=true",
+	"background_color": "#2780c2",
+	"display": "standalone",
+	"theme_color": "#2386cf",
+	"shortcuts": [
+		{
+			"name": "No Full Screen",
+			"url": "index.html",
+			"description": "Loads Cookie Clicker with the Top Bar enabled."
+		}
+	],
+	"screenshots": [
+		{
+			"src": "img/ss1.jpg",
+			"sizes": "1920x1080",
+			"type": "image/jpg",
+			"platform": "wide",
+			"form_factor": "wide"
+		},
+		{
+			"src": "img/ss2.jpg",
+			"sizes": "600x337",
+			"type": "image/jpg",
+			"platform": "wide"
+		},
+		{
+			"src": "img/ss3.jpg",
+			"sizes": "600x337",
+			"type": "image/jpg",
+			"platform": "wide"
+		},
+		{
+			"src": "img/ss4.jpg",
+			"sizes": "600x337",
+			"type": "image/jpg",
+			"platform": "wide"
+		},
+		{
+			"src": "img/ss5.jpg",
+			"sizes": "600x337",
+			"type": "image/jpg",
+			"platform": "wide"
+		},
+		{
+			"src": "img/ss6.jpg",
+			"sizes": "600x337",
+			"type": "image/jpg",
+			"platform": "wide"
+		},
+		{
+			"src": "img/ss7.jpg",
+			"sizes": "600x337",
+			"type": "image/jpg",
+			"platform": "wide"
+		}
+	],
+	"launch_handler": {
+		"client_mode": [
+			"navigate-existing",
+			"auto"
+		]
+	},
+	"handle_links": "preferred",
+	"dir": "ltr",
+	"scope": "/",
+	"lang": "en",
+	"orientation": "landscape",
+	"display_override": [
+		"window-controls-overlay",
+		"minimal_ui"
+	],
+	"file_handlers": [
+		{
+			"action": "index.html?steamMode=true",
+			"accept": {
+				"application/javascript": [
+					".js"
+				]
+			},
+			"icons": [
+				{
+					"src": "img/mods-icon.png",
+					"sizes": "128x128",
+					"type": "image/png"
+				}
+			],
+			"launch_type": "single-client"
+		},
+		{
+			"action": "index.html?steamMode=true&ModPack=true",
+			"accept": {
+				"application/json": [
+					".cookiejar"
+				]
+			},
+			"icons": [
+				{
+					"src": "img/mods-icon.png",
+					"sizes": "128x128",
+					"type": "image/png"
+				}
+			],
+			"launch_type": "single-client"
+		}
+	],
+	"categories": [
+		"idle",
+		"entertainment",
+		"games"
+	],
+	"related_applications": [
+		{
+			"platform": "webapp",
+			"url": "https://store.steampowered.com/app/1454400/Cookie_Clicker/",
+			"id": "145440"
+		},
+		{
+			"platform": "play",
+			"url": "https://play.google.com/store/apps/details?id=org.dashnet.cookieclickeradless",
+			"id": "org.dashnet.cookieclickeradless"
+		},
+		{
+			"platform": "play",
+			"url": "https://play.google.com/store/apps/details?id=org.dashnet.cookieclicker",
+			"id": "org.dashnet.cookieclicker"
+		}
+	]
+}

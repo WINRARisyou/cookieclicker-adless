@@ -1,0 +1,13 @@
+{
+	"Cookie Jar Version": 1.0,
+	"Mods": [
+		{
+			"Name": "Cookie Monster",
+			"Url": "https://cookiemonsterteam.github.io/CookieMonster/dist/CookieMonster.js"
+		},
+		{
+			"Name": "Frozen Cookies",
+			"Url": "https://mtarnuhal.github.io/FrozenCookies/frozen_cookies.js"
+		}
+	]
+}
