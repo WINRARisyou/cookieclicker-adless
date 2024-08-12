@@ -12,12 +12,14 @@ cp Game/img/ss11-1.png Base/ss7-1.png
 cp Game/img/ss12-1.png Base/ss7-1.png
 cp Game/img/ss13-1.png Base/ss7-1.png
 cp Game/img/mods-icon.png Base/mods-icon.png
+cp Game/img/notification_badge.png Base/notification_badge.png
 cp Game/img/favicon.ico Base/favicon.ico
 cp Game/img/16.png Base/16.png
 cp Game/img/32.png Base/32.png
 cp Game/img/64.png Base/64.png
 cp Game/img/128.png Base/128.png
 cp Game/img/256.png Base/256.png
+cp Game/img/512.png Base/512.png
 cp Game/main.js Base/REMEMBERTOADDMODLOGIC.js
 cp Game/index.html Base/REMEMBERTOREMOVEADS.html
 cp Game/cookieconsent.css Base/cookieconsent.css
@@ -63,6 +65,7 @@ mv Base/ss11-1.png Game/img/ss11-1.png
 mv Base/ss12-1.png Game/img/ss12-1.png
 mv Base/ss13-1.png Game/img/ss13-1.png
 mv Base/mods-icon.png Game/img/mods-icon.png
+mv Base/notification-badge.png Game/img/notification-badge.png
 mv Game/img/favicon.ico Game/img/favicon-16.ico
 mv Base/favicon.ico Game/img/favicon.ico
 mv Base/16.png Game/img/16.png
@@ -70,4 +73,5 @@ mv Base/32.png Game/img/32.png
 mv Base/64.png Game/img/64.png
 mv Base/128.png Game/img/128.png
 mv Base/256.png Game/img/256.png
+mv Base/512.png Game/img/512.png
 echo Remember to remove ads, add mod loading logic and change cookieconsent
