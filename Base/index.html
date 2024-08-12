@@ -360,7 +360,94 @@
 				<div id="tooltip" class="framed" onMouseOut="Game.tooltip.hide();"></div>
 			</div>
 			<div id="preloadImages" style="display:none;"></div>
+			<script>
+				function requestDesktopNotifications(notifName, iconX, iconY, achievementId, requestingForFirstTime) {
+					if (requestingForFirstTime) {
+						Notification.requestPermission()
+					} else {
+						const spritesheetUrl = 'img/icons.png';
+						const iconWidth = 48;  // Width of the icon
+						const iconHeight = 48; // Height of the icon
 
+						// Assuming you know the width and height of your entire spritesheet
+						const spritesheetWidth = 1728;  // Set this to your spritesheet's actual width
+						const spritesheetHeight = 1776; // Set this to your spritesheet's actual height
+
+						const canvas = document.createElement('canvas');
+						const ctx = canvas.getContext('2d');
+
+						// Set canvas size to the size of the icon
+						canvas.width = iconWidth;
+						canvas.height = iconHeight;
+
+						const image = new Image();
+						image.src = spritesheetUrl;
+
+						// Your HTML string
+						var htmlString = Game.crateTooltip(Game.AchievementsById[achievementId]);
+
+						// Create a temporary DOM element to parse the HTML
+						var tempDiv = document.createElement('div');
+						tempDiv.innerHTML = htmlString;
+
+						// Remove all <q> elements
+						var qElements = tempDiv.querySelectorAll('q');
+						qElements.forEach(function (q) {
+							q.remove();
+						});
+
+						// Get the text from the div with the class "description"
+						var descriptionText = tempDiv.querySelector('.description').textContent;
+
+						// Set a variable to the stripped text
+						var strippedText = descriptionText.trim();
+
+						image.onload = () => {
+							// Calculate the adjusted X coordinate to wrap horizontally
+							const adjustedIconX = (iconX % spritesheetWidth + spritesheetWidth) % spritesheetWidth;
+
+							// Calculate the adjusted Y coordinate to wrap vertically
+							const adjustedIconY = (-iconY % spritesheetHeight + spritesheetHeight) % spritesheetHeight;
+
+							// Draw the specific part of the spritesheet onto the canvas
+							ctx.drawImage(image, adjustedIconX, adjustedIconY, iconWidth, iconHeight, 0, 0, iconWidth, iconHeight);
+
+							// Convert the canvas content to a data URL
+							const iconUrl = canvas.toDataURL();
+							// Show the notification with the icon
+							if (!("Notification" in window)) {
+								// Check if the browser supports notifications
+								alert("This browser does not support desktop notifications");
+							} else if (Notification.permission === "granted") {
+								// Check whether notification permissions have already been granted;
+								// if so, create a notification
+								const notification = new Notification(notifName, {
+									body: strippedText,
+									icon: iconUrl,
+									badge: "img/notification_badge.png",
+									requireInteraction: false
+								});
+								// …
+							} else if (Notification.permission !== "denied") {
+								// We need to ask the user for permission
+								Notification.requestPermission().then((permission) => {
+									// If the user accepts, let's create a notification
+									if (permission === "granted") {
+										const notification = new Notification(notifName, {
+											body: strippedText,
+											icon: iconUrl,
+											badge: "img/notification_badge.png",
+											requireInteraction: false
+										});
+									}
+								});
+							}
+						};
+					}
+
+				}
+
+			</script>
 		</div>
 
 	</div>

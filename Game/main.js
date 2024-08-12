@@ -6048,7 +6048,7 @@ Game.Launch = function () {
 					'</div>' +
 					'<div class="block" style="padding:0px;margin:8px 4px;">' +
 					'<div class="subsection" style="padding:0px;">' +
-
+					// Bookmark Desktop Notifications Button
 					'<div class="title">' + loc("Settings") + '</div>' +
 					((App && App.writeCloudUI) ? App.writeCloudUI() : '') +
 					'<div class="listing">' +
@@ -6070,7 +6070,8 @@ Game.Launch = function () {
 					Game.WritePrefButton('monospace', 'monospaceButton', loc("Alt font") + ON, loc("Alt font") + OFF) + '<label>(' + loc("your cookies are displayed using a monospace font") + ')</label><br>' +
 					Game.WritePrefButton('format', 'formatButton', loc("Short numbers") + OFF, loc("Short numbers") + ON, 'BeautifyAll();Game.RefreshStore();Game.upgradesToRebuild=1;', 1) + (EN ? '<label>(shorten big numbers)</label>' : '') + '<br>' +
 					Game.WritePrefButton('notifs', 'notifsButton', loc("Fast notes") + ON, loc("Fast notes") + OFF) + '<label>(' + loc("notifications disappear much faster") + ')</label><br>' +
-					//Game.WritePrefButton('autoupdate','autoupdateButton','Offline mode OFF','Offline mode ON',0,1)+'<label>(disables update notifications)</label><br>'+
+					// Game.WritePrefButton('pwanotifs','PWAnotifsButton','Desktop Notifications' + OFF,'Desktop Notifications O',0,1)+'<label>(enables desktop notifications)</label><br>'+
+					Game.WritePrefButton('pwanotifs', 'PWAnotifsButton', "Desktop Notifications" + ON, "Desktop Notifications" + OFF, 'requestDesktopNotifications(null, null, null, null, true);') + '<label>(enables desktop notifications)</label><br>' +
 					(!App ? Game.WritePrefButton('warn', 'warnButton', loc("Closing warning") + ON, loc("Closing warning") + OFF) + '<label>(' + loc("the game will ask you to confirm when you close the window") + ')</label><br>' : '') +
 					//Game.WritePrefButton('focus','focusButton',loc("Defocus")+OFF,loc("Defocus")+ON,0,1)+'<label>('+loc("the game will be less resource-intensive when out of focus")+')</label><br>'+
 					Game.WritePrefButton('extraButtons', 'extraButtonsButton', loc("Extra buttons") + ON, loc("Extra buttons") + OFF, 'Game.ToggleExtraButtons();') + '<label>(' + loc("add options on buildings like Mute") + ')</label><br>' +
@@ -11695,8 +11696,11 @@ Game.Launch = function () {
 						var name = it.shortName ? it.shortName : it.dname;
 						it.won = 1;
 						Game.Notify(loc("Achievement unlocked"), '<div class="title" style="font-size:18px;margin-top:-2px;">' + name + '</div>', it.icon);
+						var coordinate = it.icon;
+						let [x, y] = coordinate; //.split(',').map(Number);
 						Game.NotifyTooltip('function(){return Game.crateTooltip(Game.AchievementsById[' + it.id + ']);}');
-						if (Game.CountsAsAchievementOwned(it.pool)) Game.AchievementsOwned++;
+						// Bookmark Achievement Get Notifications!
+						if (Game.CountsAsAchievementOwned(it.pool)) { Game.AchievementsOwned++; if (Notification.permission === "granted") { requestDesktopNotifications(name, x * 48, y * -48, it.id) } else if (Notification.permission !== "denied") { console.log("Notification Permissions are denined") } }
 						Game.recalculateGains = 1;
 						if (App && it.vanilla) App.gotAchiev(it.id);
 					}
@@ -14839,12 +14843,13 @@ Game.Launch = function () {
 			Game.dragonLevel = Game.dragonLevels.length - 1;
 			Game.santaLevel = Game.santaLevels.length - 1;
 		}
-
+		// Bookmark Cheated Cookies 1
 		Game.SesameReset = function () {
 			var name = Game.bakeryName;
 			Game.HardReset(2);
 			Game.bakeryName = name;
 			Game.bakeryNameRefresh();
+			if (Notification.permission === "granted" && Game.Achievements['Cheated cookies taste awful'].won !== 1) { requestDesktopNotifications("Cheated cookies taste awful", 10 * 48, 6 * -48, 70);console.log('1') }
 			Game.Achievements['Cheated cookies taste awful'].won = 1;
 		}
 
@@ -14914,9 +14919,10 @@ Game.Launch = function () {
 				ctx.fillStyle = '#000';
 				ctx.fillRect(0, 0, 128, 64);
 			}
-
+			// Bookmark Cheated Cookies 2
 			l('debug').style.display = 'block';
 			Game.sesame = 1;
+			if (Notification.permission === "granted" && Game.Achievements['Cheated cookies taste awful'].won !== 1) { requestDesktopNotifications("Cheated cookies taste awful", 10 * 48, 6 * -48, 70);console.log('2') }
 			Game.Achievements['Cheated cookies taste awful'].won = 1;
 		}
 
@@ -14985,11 +14991,12 @@ Game.Launch = function () {
 		}
 		else if (App.saveData) setTimeout(function () { Game.LoadSave(App.saveData); }, 100);
 		else setTimeout(function () { Game.LoadSave(); }, 100);
-
+		// Bookmark Fullscreen and Mod Loading
 		Game.ready = 1;
 		setTimeout(function () { if (typeof showAds === 'undefined' && (!l('detectAds') || l('detectAds').clientHeight < 1)) Game.addClass('noAds'); }, 500);
 		l('offGameMessage').innerHTML = '';
 		l('offGameMessageWrap').style.display = 'none';
+
 		var steamMode = document.location.href.includes("?steamMode=true")
 		if (steamMode) {
 			console.log('Enabling Steam view mode')
@@ -15003,11 +15010,11 @@ Game.Launch = function () {
 			try {
 				const blob = await handledFile.getFile();
 				const url = window.URL.createObjectURL(blob);
-		
+
 				if (document.location.href.includes("ModPack=true")) {
 					const response = await fetch(url);
 					const modPack = await response.json();
-		
+
 					if (modPack.Mods && modPack.Mods.length > 0) {
 						modPack.Mods.forEach(mod => {
 							// Convert keys to lowercase
@@ -15015,17 +15022,17 @@ Game.Launch = function () {
 							Object.keys(mod).forEach(key => {
 								normalizedMod[key.toLowerCase()] = mod[key];
 							});
-		
+
 							const modName = normalizedMod.name;
 							const modURL = normalizedMod.url;
 							const modAuthor = normalizedMod.author;
-		
+
 							console.log(`Loading mod: ${modName}`);
 							console.log(`Mod URL: ${modURL}`);
 							if (modAuthor) {
 								console.log(`Author: ${modAuthor}`)
 							}
-		
+
 							if (modURL) {
 								Game.LoadMod(modURL);
 							} else {
@@ -15338,8 +15345,8 @@ Game.Launch = function () {
 				if (Game.handmadeCookies >= 1000000000000000000000000000) { Game.Win('Clickety split'); Game.Unlock('Miraculite mouse'); }
 				if (Game.handmadeCookies >= 100000000000000000000000000000) { Game.Win('Ain\'t that a click in the head'); Game.Unlock('Aetherice mouse'); }
 				if (Game.handmadeCookies >= 10000000000000000000000000000000) { Game.Win('What\'s not clicking'); Game.Unlock('Omniplast mouse'); }
-
-				if (Game.cookiesEarned < Game.cookies) Game.Win('Cheated cookies taste awful');
+				// Bookmark Cheated Cookies 3
+				if (Game.cookiesEarned < Game.cookies) {if (Notification.permission === "granted" && Game.Achievements['Cheated cookies taste awful'].won !== 1) { requestDesktopNotifications("Cheated cookies taste awful", 10 * 48, 6 * -48, 70); console.log('3') } Game.Win('Cheated cookies taste awful'); }
 
 				if (Game.Has('Skull cookies') && Game.Has('Ghost cookies') && Game.Has('Bat cookies') && Game.Has('Slime cookies') && Game.Has('Pumpkin cookies') && Game.Has('Eyeball cookies') && Game.Has('Spider cookies')) Game.Win('Spooky cookies');
 				if (Game.wrinklersPopped >= 1) Game.Win('Itchscratcher');
@@ -15734,7 +15741,7 @@ window.onload = function () {
 							Game.Launch();
 							if (top != self) Game.ErrorFrame();
 							else {
-
+								// Bookmark add myself
 								console.log('[=== ' + choose([
 									'Oh, hello!',
 									'hey, how\'s it hangin',
