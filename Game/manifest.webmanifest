@@ -6,13 +6,12 @@
 	"scope": "/",
 	"lang": "en",
 	"description": "Cookie Clicker is a game about making an absurd amount of cookies. To help you in this endeavor, you will recruit a wide variety of helpful cookie makers, like friendly Grandmas, Farms, Factories, and otherworldly Portals.",
-	"id": "org.dashnet.cookieclicker",
+	"id": "org.dashnet.cookieclickerPWA",
 	"start_url": "index.html?steamMode=true",
 	"theme_color": "#2386cf",
 	"background_color": "#2780c2",
 	"display": "standalone",
 	"display_override": [
-		"window-controls-overlay",
 		"minimal_ui"
 	],
 	"handle_links": "preferred",
@@ -46,6 +45,11 @@
 					"src": "img/128.png",
 					"type": "image/png",
 					"sizes": "128x128"
+				},
+				{
+					"src": "img/512.png",
+					"type": "image/png",
+					"sizes": "512x512"
 				}
 			]
 		}

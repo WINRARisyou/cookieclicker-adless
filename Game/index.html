@@ -430,6 +430,7 @@
 								// …
 							} else if (Notification.permission !== "denied") {
 								// We need to ask the user for permission
+								alert("Please allow notifications to notify you when you get an achievement,\n or y'know, don't")
 								Notification.requestPermission().then((permission) => {
 									// If the user accepts, let's create a notification
 									if (permission === "granted") {
