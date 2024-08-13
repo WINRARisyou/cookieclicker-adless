@@ -1,0 +1,8 @@
+[{
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "io.github.winrarisyou.cookieclickerplus",
+      "sha256_cert_fingerprints": ["A8:F0:F3:20:99:4F:67:37:C6:6E:FE:1E:98:84:FC:9D:C8:DF:66:83:BF:2B:A1:16:B5:A9:2C:9C:90:42:B8:EE"]
+    }
+  }]
