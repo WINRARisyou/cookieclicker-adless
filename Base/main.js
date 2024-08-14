@@ -1840,9 +1840,9 @@ Game.Launch = function () {
 		Game.l = l('game');
 		Game.wrapper = l('wrapper');
 		Game.bounds = 0;//rectangle defining screen limits (right,left,bottom,top) updated every logic frame
-
+		// Bookmark Fullscreen
 		TopBarOffset = 32;
-		if (!App) Game.wrapper.classList.add('onWeb');
+		if (!App && document.location.href.includes("?steamMode=true") == false) Game.wrapper.classList.add('onWeb');
 		else { Game.wrapper.classList.add('offWeb'); TopBarOffset = 0; }
 
 		if (Game.mobile == 1) {
@@ -14849,7 +14849,7 @@ Game.Launch = function () {
 			Game.HardReset(2);
 			Game.bakeryName = name;
 			Game.bakeryNameRefresh();
-			if (Notification.permission === "granted" && Game.Achievements['Cheated cookies taste awful'].won !== 1) { requestDesktopNotifications("Cheated cookies taste awful", 10 * 48, 6 * -48, 70);console.log('1') }
+			if (Notification.permission === "granted" && Game.Achievements['Cheated cookies taste awful'].won !== 1) { requestDesktopNotifications("Cheated cookies taste awful", 10 * 48, 6 * -48, 70); console.log('1') }
 			Game.Achievements['Cheated cookies taste awful'].won = 1;
 		}
 
@@ -14922,7 +14922,7 @@ Game.Launch = function () {
 			// Bookmark Cheated Cookies 2
 			l('debug').style.display = 'block';
 			Game.sesame = 1;
-			if (Notification.permission === "granted" && Game.Achievements['Cheated cookies taste awful'].won !== 1) { requestDesktopNotifications("Cheated cookies taste awful", 10 * 48, 6 * -48, 70);console.log('2') }
+			if (Notification.permission === "granted" && Game.Achievements['Cheated cookies taste awful'].won !== 1) { requestDesktopNotifications("Cheated cookies taste awful", 10 * 48, 6 * -48, 70); console.log('2') }
 			Game.Achievements['Cheated cookies taste awful'].won = 1;
 		}
 
@@ -14991,20 +14991,20 @@ Game.Launch = function () {
 		}
 		else if (App.saveData) setTimeout(function () { Game.LoadSave(App.saveData); }, 100);
 		else setTimeout(function () { Game.LoadSave(); }, 100);
-		// Bookmark Fullscreen and Mod Loading
+		// Bookmark Mod Loading
 		Game.ready = 1;
 		setTimeout(function () { if (typeof showAds === 'undefined' && (!l('detectAds') || l('detectAds').clientHeight < 1)) Game.addClass('noAds'); }, 500);
 		l('offGameMessage').innerHTML = '';
 		l('offGameMessageWrap').style.display = 'none';
 
-		var steamMode = document.location.href.includes("?steamMode=true")
+		/*var steamMode = document.location.href.includes("?steamMode=true")
 		if (steamMode) {
 			console.log('Enabling Steam view mode')
 			var x = document.getElementById("topBar")
 			x.remove()
 			x = document.getElementById("game")
 			game.style.top = 0;
-		}
+		}*/
 
 		async function getMods(handledFile) {
 			try {
@@ -15040,6 +15040,13 @@ Game.Launch = function () {
 							}
 						});
 					}
+				} else if (document.location.href.includes("LoadSave=true")) {
+					const readSave = new FileReader()
+					readSave.onload = function(event) {
+						console.log("Loading Save: " + event.target.result)
+						Game.LoadSave(event.target.result)
+					}
+					readSave.readAsText(blob)
 				} else {
 					Game.LoadMod(url);
 				}
@@ -15346,7 +15353,7 @@ Game.Launch = function () {
 				if (Game.handmadeCookies >= 100000000000000000000000000000) { Game.Win('Ain\'t that a click in the head'); Game.Unlock('Aetherice mouse'); }
 				if (Game.handmadeCookies >= 10000000000000000000000000000000) { Game.Win('What\'s not clicking'); Game.Unlock('Omniplast mouse'); }
 				// Bookmark Cheated Cookies 3
-				if (Game.cookiesEarned < Game.cookies) {if (Notification.permission === "granted" && Game.Achievements['Cheated cookies taste awful'].won !== 1) { requestDesktopNotifications("Cheated cookies taste awful", 10 * 48, 6 * -48, 70); console.log('3') } Game.Win('Cheated cookies taste awful'); }
+				if (Game.cookiesEarned < Game.cookies) { if (Notification.permission === "granted" && Game.Achievements['Cheated cookies taste awful'].won !== 1) { requestDesktopNotifications("Cheated cookies taste awful", 10 * 48, 6 * -48, 70); console.log('3') } Game.Win('Cheated cookies taste awful'); }
 
 				if (Game.Has('Skull cookies') && Game.Has('Ghost cookies') && Game.Has('Bat cookies') && Game.Has('Slime cookies') && Game.Has('Pumpkin cookies') && Game.Has('Eyeball cookies') && Game.Has('Spider cookies')) Game.Win('Spooky cookies');
 				if (Game.wrinklersPopped >= 1) Game.Win('Itchscratcher');

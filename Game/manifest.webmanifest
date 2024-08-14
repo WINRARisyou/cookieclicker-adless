@@ -217,6 +217,22 @@
 				}
 			],
 			"launch_type": "single-client"
+		},
+		{
+			"action": "index.html?steamMode=true&LoadSave=true",
+			"accept": {
+				"application/json": [
+					".cki"
+				]
+			},
+			"icons": [
+				{
+					"src": "img/512.png",
+					"sizes": "512x512, 256x256, 128x128, 64x64, 32x32",
+					"type": "image/png"
+				}
+			],
+			"launch_type": "single-client"
 		}
 	],
 	"categories": [
@@ -226,7 +242,7 @@
 	],
 	"related_applications": [
 		{
-			"platform": "webapp",
+			"platform": "steam",
 			"url": "https://store.steampowered.com/app/1454400/Cookie_Clicker/",
 			"id": "145440"
 		},

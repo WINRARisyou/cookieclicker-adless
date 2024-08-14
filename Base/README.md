@@ -2,6 +2,8 @@
 ## Bookmarks
 Use Control F to search for "// Bookmark \<bookmark\>"
  * Desktop Notifications Button
- * Achievement Get! | Desktop Notifications
- * Fullscreen and Mod Loading
+ * Achievement Get Notifications!
+ * Fullscreen
+ * Mod Loading
  * Credit myself for additions
+ * Cheated Cookies 1-3
