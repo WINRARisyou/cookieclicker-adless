@@ -2274,7 +2274,7 @@ Game.Launch = function () {
 		UPDATE CHECKER
 		=======================================================================================*/
 		Game.CheckUpdates = function () {
-			if (!App) ajax('server.php?q=checkupdate', Game.CheckUpdatesResponse);
+			if (!App) ajax('https://orteil.dashnet.org/cookieclicker/server.php?q=checkupdate', Game.CheckUpdatesResponse);
 		}
 		Game.CheckUpdatesResponse = function (response) {
 			var r = response.split('|');
@@ -2334,7 +2334,7 @@ Game.Launch = function () {
 		}
 
 
-		if (!App) {
+		if (!App || document.location.href.includes("?steamMode=true")) {
 			Game.attachTooltip(l('httpsSwitch'), '<div style="padding:8px;width:350px;text-align:center;font-size:11px;">' + loc("You are currently playing Cookie Clicker on the <b>%1</b> protocol.<br>The <b>%2</b> version uses a different save slot than this one.<br>Click this lock to reload the page and switch to the <b>%2</b> version!", [(Game.https ? 'HTTPS' : 'HTTP'), (Game.https ? 'HTTP' : 'HTTPS')]) + '</div>', 'this');
 			AddEvent(l('httpsSwitch'), 'click', function () {
 				PlaySound('snd/pop' + Math.floor(Math.random() * 3 + 1) + '.mp3', 0.75);
@@ -2384,7 +2384,7 @@ Game.Launch = function () {
 		}, 'this');
 		l('heraldsAmount').textContent = '?';
 		l('heralds').style.display = 'inline-block';
-		if (App) {
+		if (App || document.location.href.includes("?steamMode=true")) {
 			l('heralds').style.paddingTop = '4px';
 			l('heralds').style.position = 'absolute';
 			l('heralds').style.top = '0px';
@@ -2767,6 +2767,8 @@ Game.Launch = function () {
 						Game.prefs.bgMusic = spl[22] ? parseInt(spl[22]) : 1;
 						Game.prefs.notScary = spl[23] ? parseInt(spl[23]) : 0;
 						Game.prefs.fullscreen = spl[24] ? parseInt(spl[24]) : 0; if (App) App.setFullscreen(Game.prefs.fullscreen);
+						if (document.location.href.includes("?steamMode=true") && Game.prefs.fullscreen == 1) Array.prototype.slice.call(document.querySelectorAll('html')).map(function (el) { el.requestFullscreen(); });
+						else Array.prototype.slice.call(document.querySelectorAll('html')).map(function (el) { if (document.exitFullscreen) { document.exitFullscreen(); } });
 						Game.prefs.screenreader = spl[25] ? parseInt(spl[25]) : 0;
 						Game.prefs.discordPresence = spl[26] ? parseInt(spl[26]) : 1;
 						BeautifyAll();
@@ -5860,8 +5862,11 @@ Game.Launch = function () {
 				Game.Objects[i].mute(0);
 			}
 		}
+		// Bookmark Toggle Fullscreen
 		Game.ToggleFullscreen = function () {
 			if (App) App.setFullscreen(Game.prefs.fullscreen);
+			if (document.location.href.includes("?steamMode=true") && Game.prefs.fullscreen == 1) Array.prototype.slice.call(document.querySelectorAll('html')).map(function (el) { el.requestFullscreen(); });
+			else Array.prototype.slice.call(document.querySelectorAll('html')).map(function (el) { if (document.exitFullscreen) { document.exitFullscreen(); } });
 		}
 
 		Game.WriteSlider = function (slider, leftText, rightText, startValueFunction, callback) {
@@ -6053,11 +6058,11 @@ Game.Launch = function () {
 					((App && App.writeCloudUI) ? App.writeCloudUI() : '') +
 					'<div class="listing">' +
 					Game.WriteSlider('volumeSlider', loc("Volume"), '[$]%', function () { return Game.volume; }, 'Game.setVolume(Math.round(l(\'volumeSlider\').value));l(\'volumeSliderRightText\').innerHTML=Game.volume+\'%\';') +
-					(App ? Game.WriteSlider('volumeMusicSlider', loc("Volume (music)"), '[$]%', function () { return Game.volumeMusic; }, 'Game.setVolumeMusic(Math.round(l(\'volumeMusicSlider\').value));l(\'volumeMusicSliderRightText\').innerHTML=Game.volumeMusic+\'%\';') : '') +
+					(App || document.location.href.includes("?steamMode=true") ? Game.WriteSlider('volumeMusicSlider', loc("Volume (music)"), '[$]%', function () { return Game.volumeMusic; }, 'Game.setVolumeMusic(Math.round(l(\'volumeMusicSlider\').value));l(\'volumeMusicSliderRightText\').innerHTML=Game.volumeMusic+\'%\';') : '') +
 					/*(App?Game.WriteSlider('wubMusicSlider',loc("Wub"),'[$]%',function(){return 100;},'Game.setWubMusic(Math.round(l(\'wubMusicSlider\').value));l(\'wubMusicSliderRightText\').innerHTML=(Math.round(l(\'wubMusicSlider\').value))+\'%\';'):'')+*/
 					'<br>' +
-					(App ? Game.WritePrefButton('bgMusic', 'bgMusicButton', loc("Music in background") + ON, loc("Music in background") + OFF, '') + '<label>(' + loc("music will keep playing even when the game window isn't focused") + ')</label><br>' : '') +
-					(App ? Game.WritePrefButton('fullscreen', 'fullscreenButton', loc("Fullscreen") + ON, loc("Fullscreen") + OFF, 'Game.ToggleFullscreen();') + '<br>' : '') +
+					(App || document.location.href.includes("?steamMode=true") ? Game.WritePrefButton('bgMusic', 'bgMusicButton', loc("Music in background") + ON, loc("Music in background") + OFF, '') + '<label>(' + loc("music will keep playing even when the game window isn't focused") + ')</label><br>' : '') +
+					(App || document.location.href.includes("?steamMode=true") ? Game.WritePrefButton('fullscreen', 'fullscreenButton', loc("Fullscreen") + ON, loc("Fullscreen") + OFF, 'Game.ToggleFullscreen();') + '<br>' : '') +
 					Game.WritePrefButton('fancy', 'fancyButton', loc("Fancy graphics") + ON, loc("Fancy graphics") + OFF, 'Game.ToggleFancy();') + '<label>(' + loc("visual improvements; disabling may improve performance") + ')</label><br>' +
 					Game.WritePrefButton('filters', 'filtersButton', loc("CSS filters") + ON, loc("CSS filters") + OFF, 'Game.ToggleFilters();') + '<label>(' + (EN ? 'cutting-edge visual improvements; disabling may improve performance' : loc("visual improvements; disabling may improve performance")) + ')</label><br>' +
 					Game.WritePrefButton('particles', 'particlesButton', loc("Particles") + ON, loc("Particles") + OFF) + (EN ? '<label>(cookies falling down, etc; disabling may improve performance)</label>' : '') + '<br>' +
@@ -11029,7 +11034,7 @@ Game.Launch = function () {
 				str += '<option value="' + i + '"' + (i == Game.jukebox.onSound ? ' selected="true"' : '') + '>' + Game.jukebox.sounds[i] + '</option>';
 			}
 			str += '</select><a class="option" onclick="Game.jukebox.setSound(Math.floor(Math.random()*Game.jukebox.sounds.length));">' + loc("Random") + '</a>';
-			if (App) {
+			if (App || document.location.href.includes("?steamMode=true")) {
 				var data = Music ? Music.tracks[Game.jukebox.tracks[Game.jukebox.onTrack]].audio : 0;
 				var dur = data ? data.duration + 1 : 0;
 				str += '<div class="line"></div>';
@@ -11067,7 +11072,7 @@ Game.Launch = function () {
 		Game.NewUpgradeCookie({ name: 'Marshmallow sandwich cookies', desc: 'S\'mores\' more civilized cousins: two regular chocolate chip cookies joined by a gooey, melty marshmallow. Theoretically one could assemble all kinds of other things this way. The mind races.', icon: [31, 34], power: 5, price: getCookiePrice(51) });
 
 		Game.NewUpgradeCookie({ name: 'Web cookies', desc: 'The original recipe; named for the delicate pattern inscribed on their surface by the baking process. Eating these can tell a lot about someone. Invented by well-connected bakers, no doubt.' + (App ? '<br>Only of any use in Cookie Clicker\'s web version, of course.' : ''), icon: [25, 35], power: (App ? 0 : 5), price: getCookiePrice(52) }); if (App) Game.last.pool = 'debug';
-		Game.NewUpgradeCookie({ name: 'Steamed cookies', desc: 'Localized entirely within this gaming platform? Yes! Baked with the power of steam, in a touch of cutting-edge modernity not seen since the industrial revolution.' + (!App ? '<br>Only of any use in Cookie Clicker\'s Steam version, of course.' : ''), icon: [26, 35], power: (App ? 5 : 0), price: getCookiePrice(52) }); if (!App) Game.last.pool = 'debug';
+		Game.NewUpgradeCookie({ name: 'Steamed cookies', desc: 'Localized entirely within this gaming platform? Yes! Baked with the power of steam, in a touch of cutting-edge modernity not seen since the industrial revolution.' + (!App || document.location.href.includes("?UltraSteamMode=true") ? '<br>Only of any use in Cookie Clicker\'s Steam version, of course.' : ''), icon: [26, 35], power: (App || document.location.href.includes("?UltraSteamMode=true") ? 5 : 0), price: getCookiePrice(52) }); if (!App && document.location.href.includes("?UltraSteamMode=true") == false) Game.last.pool = 'debug';
 
 		order = 10050;
 		Game.NewUpgradeCookie({ name: 'Deep-fried cookie dough', desc: 'They\'ll fry anything these days. Drizzled in hot chocolate syrup, just like in state fairs. Spikes up your blood sugar AND your cholesterol!', icon: [23, 35], require: 'Box of maybe cookies', power: 5, price: Math.pow(10, 47) });
@@ -14993,6 +14998,7 @@ Game.Launch = function () {
 		else setTimeout(function () { Game.LoadSave(); }, 100);
 		// Bookmark Mod Loading
 		Game.ready = 1;
+		initMusic();
 		setTimeout(function () { if (typeof showAds === 'undefined' && (!l('detectAds') || l('detectAds').clientHeight < 1)) Game.addClass('noAds'); }, 500);
 		l('offGameMessage').innerHTML = '';
 		l('offGameMessageWrap').style.display = 'none';
@@ -15042,7 +15048,7 @@ Game.Launch = function () {
 					}
 				} else if (document.location.href.includes("LoadSave=true")) {
 					const readSave = new FileReader()
-					readSave.onload = function(event) {
+					readSave.onload = function (event) {
 						console.log("Loading Save: " + event.target.result)
 						Game.LoadSave(event.target.result)
 					}

@@ -1,15 +1,17 @@
 ﻿<!DOCTYPE html>
 <html>
 <!-- WINRAR was here. -->
+<link href='fonts.css' rel='stylesheet' type='text/css'>
+
 
 <head>
 	<!-- external -->
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 		window.cookieconsent_options = { "message": "<br>Unsurprisingly, this website uses cookies for ads and traffic analysis.<br>", "dismiss": "Got it!", "learnMore": "Learn more", "link": "//orteil.dashnet.org/cookieconsentpolicy.html", "target": "_blank", "theme": "cookieconsent.css", "domain": "dashnet.org" };
 	</script>
 
 	<script type="text/javascript"
-		src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.9/cookieconsent.min.js"></script>
+		src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.9/cookieconsent.min.js"></script> -->
 
 	<!--<link href="https://fonts.googleapis.com/css?family=Kavoon&subset=latin,latin-ext" rel="stylesheet" type="text/css">-->
 	<link href='https://fonts.googleapis.com/css?family=Merriweather:900&subset=latin,latin-ext' rel='stylesheet'
@@ -50,7 +52,7 @@
 
 	<link href="style.css?v=9" rel="stylesheet" type="text/css">
 	<script src="main.js?v=10"></script>
-
+	<script src="music.js"></script>
 	<!-- ad -->
 	<script src="showads.js"></script><!-- this just detects adblockers so we can adjust the layout and play nice -->
 	<!-- /ad -->
@@ -435,7 +437,7 @@
 
 							// Convert the canvas content to a data URL
 							const iconUrl = canvas.toDataURL();
-							
+
 							// Show the notification with the icon
 							if (localStorage.getItem("shouldUseDefaultNotif") == "true" || localStorage.getItem("shouldUseDefaultNotif") == true) {
 								if (!("Notification" in window)) {
