@@ -3,7 +3,7 @@
 	"name": "Cookie Clicker",
 	"dir": "ltr",
 	"orientation": "landscape",
-	"scope": "/",
+	"scope": "./",
 	"lang": "en",
 	"description": "Cookie Clicker is a game about making an absurd amount of cookies. To help you in this endeavor, you will recruit a wide variety of helpful cookie makers, like friendly Grandmas, Farms, Factories, and otherworldly Portals.",
 	"id": "org.dashnet.cookieclickerPWA",
